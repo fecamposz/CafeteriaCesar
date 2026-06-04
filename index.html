@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Origen Café — Cafetería Premium para Eventos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #F5F0E8;
+    --espresso: #1C1410;
+    --brown: #3D2B1F;
+    --caramel: #A0622A;
+    --gold: #C8943F;
+    --sand: #E8DDD0;
+    --mist: #F9F6F2;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--espresso);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: transparent;
+    transition: background 0.4s, backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(28, 20, 16, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 148, 63, 0.2);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sand);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.7rem 1.6rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--espresso); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #0D0A08 0%, #1C1410 55%, #2A1A0F 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+    background-size: 40px 40px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 10rem 3rem 6rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    animation: heroFade 1.2s ease forwards;
+  }
+  @keyframes heroFade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-image {
+    position: relative; z-index: 2;
+    overflow: hidden;
+    animation: heroImgFade 1.5s ease forwards;
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+  }
+  .hero-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, #1C1410 0%, transparent 30%),
+                linear-gradient(to top, rgba(28,20,16,0.5) 0%, transparent 40%);
+  }
+  @keyframes heroImgFade {
+    from { opacity: 0; transform: scale(1.04); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .hero-tag::before, .hero-tag::after {
+    content: ''; width: 30px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero p {
+    font-size: 1.05rem; font-weight: 300;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.75; max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    padding: 1rem 2.2rem;
+    background: var(--gold);
+    color: var(--espresso);
+    text-decoration: none;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: #D4A050; transform: translateY(-2px); }
+  .btn-ghost {
+    padding: 1rem 2.2rem;
+    border: 1px solid rgba(245,240,232,0.3);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    animation: scrollBounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECCIÓN GENERAL ── */
+  section { padding: 7rem 4rem; }
+  .section-tag {
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--cream); margin-bottom: 1.5rem;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+
+  /* ── SERVICIOS ── */
+  .services { background: var(--mist); color: var(--espresso); }
+  .services .section-tag { color: var(--caramel); }
+  .services .section-tag::before { background: var(--caramel); }
+  .services h2 { color: var(--espresso); }
+  .services h2 em { color: var(--caramel); }
+  .services-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: end; margin-bottom: 5rem;
+  }
+  .services-header p {
+    color: rgba(28,20,16,0.6);
+    font-size: 1rem; line-height: 1.8; font-weight: 300;
+    padding-top: 1rem;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px; background: rgba(28,20,16,0.08);
+  }
+  .service-card {
+    background: var(--mist);
+    padding: 3rem 2.5rem;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: var(--cream); }
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 4rem; font-weight: 300;
+    color: rgba(160,98,42,0.15);
+    line-height: 1; margin-bottom: 1.5rem;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 400;
+    color: var(--espresso); margin-bottom: 0.8rem;
+  }
+  .service-card p {
+    font-size: 0.88rem; line-height: 1.75;
+    color: rgba(28,20,16,0.55); font-weight: 300;
+  }
+  .service-card .service-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--caramel); text-decoration: none;
+    transition: gap 0.3s;
+  }
+  .service-card .service-link:hover { gap: 0.9rem; }
+  .service-link-arrow { font-size: 1rem; }
+
+  /* ── NUESTRA HISTORIA ── */
+  #nosotros {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-full {
+    position: relative;
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-left {
+    position: relative;
+    overflow: hidden;
+  }
+  .about-left img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 30%;
+    display: block;
+    filter: brightness(0.75);
+  }
+  .about-left-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, transparent 60%, var(--espresso) 100%),
+                linear-gradient(to top, rgba(28,20,16,0.6) 0%, transparent 50%);
+  }
+  .about-left-stat {
+    position: absolute; bottom: 3rem; left: 3rem;
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+  .astat {
+    display: flex; flex-direction: column;
+  }
+  .astat-num {
+    font-family: var(--font-display);
+    font-size: 3.5rem; font-weight: 300; line-height: 1;
+    color: var(--gold);
+  }
+  .astat-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,240,232,0.5); margin-top: 0.2rem;
+  }
+  .about-right {
+    background: var(--espresso);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 5rem 6rem 4rem;
+    position: relative;
+  }
+  .about-right::before {
+    content: '';
+    position: absolute; top: 4rem; right: 4rem;
+    width: 80px; height: 80px;
+    border-top: 1px solid rgba(200,148,63,0.2);
+    border-right: 1px solid rgba(200,148,63,0.2);
+  }
+  .about-right .section-tag { margin-bottom: 1.2rem; }
+  .about-right h2 { margin-bottom: 2rem; }
+  .about-body-text {
+    font-size: 0.95rem; line-height: 1.9; font-weight: 300;
+    color: rgba(245,240,232,0.55);
+    border-left: 1px solid rgba(200,148,63,0.25);
+    padding-left: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .about-body-text p + p { margin-top: 1rem; }
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: rgba(200,148,63,0.1);
+    margin-bottom: 3rem;
+  }
+  .pillar {
+    background: var(--espresso);
+    padding: 1.5rem;
+    transition: background 0.3s;
+  }
+  .pillar:hover { background: rgba(200,148,63,0.05); }
+  .pillar-icon {
+    font-size: 1.3rem; margin-bottom: 0.75rem; display: block;
+  }
+  .pillar strong {
+    display: block; font-size: 0.82rem; font-weight: 500;
+    color: var(--cream); margin-bottom: 0.3rem; letter-spacing: 0.02em;
+  }
+  .pillar span {
+    font-size: 0.77rem; color: rgba(245,240,232,0.38);
+    font-weight: 300; line-height: 1.5;
+  }
+
+  /* ── EVENTOS ALTERNADOS ── */
+  .events { background: var(--brown); padding: 7rem 0; }
+  .events-header { text-align: center; margin-bottom: 5rem; padding: 0 4rem; }
+  .events-header p {
+    color: rgba(245,240,232,0.5); font-weight: 300;
+    max-width: 500px; margin: 0 auto; line-height: 1.75; font-size: 0.95rem;
+  }
+  .events-list { display: flex; flex-direction: column; }
+  .event-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 420px;
+    border-top: 1px solid rgba(200,148,63,0.1);
+  }
+  .event-row:last-child { border-bottom: 1px solid rgba(200,148,63,0.1); }
+  .event-row-img {
+    position: relative; overflow: hidden;
+  }
+  .event-row-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+  .event-row:hover .event-row-img img { transform: scale(1.04); }
+  .event-row-img-overlay {
+    position: absolute; inset: 0;
+    background: rgba(28,20,16,0.25);
+    transition: opacity 0.4s;
+  }
+  .event-row:hover .event-row-img-overlay { opacity: 0; }
+  .event-row-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 4rem 5rem;
+    background: var(--espresso);
+  }
+  .event-row.reverse .event-row-img { order: 2; }
+  .event-row.reverse .event-row-text {
+    order: 1;
+    background: rgba(28,20,16,0.5);
+  }
+  .event-row-tag {
+    display: inline-block;
+    font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(200,148,63,0.4);
+    color: var(--gold); margin-bottom: 1.2rem;
+    width: fit-content;
+  }
+  .event-row-text h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+    font-weight: 300; color: var(--cream);
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  .event-row-text p {
+    font-size: 0.88rem; font-weight: 300;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.75; max-width: 380px;
+    margin-bottom: 2rem;
+  }
+  .event-row-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    transition: gap 0.3s;
+    width: fit-content;
+  }
+  .event-row-link:hover { gap: 1rem; }
+
+  /* ── PROCESO ── */
+  .process { background: var(--cream); color: var(--espresso); }
+  .process h2 { color: var(--espresso); }
+  .process h2 em { color: var(--caramel); }
+  .process .section-tag { color: var(--caramel); }
+  .process .section-tag::before { background: var(--caramel); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 4rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 24px; left: 12.5%; right: 12.5%;
+    height: 1px; background: rgba(160,98,42,0.2);
+  }
+  .process-step { padding: 0 2rem; text-align: center; }
+  .step-num {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(160,98,42,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 300;
+    color: var(--caramel);
+    background: var(--cream);
+    position: relative; z-index: 1;
+  }
+  .process-step h4 {
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 400;
+    color: var(--espresso); margin-bottom: 0.75rem;
+  }
+  .process-step p {
+    font-size: 0.83rem; line-height: 1.7;
+    color: rgba(28,20,16,0.5); font-weight: 300;
+  }
+
+  /* ── PAQUETES ── */
+  .packages { background: var(--mist); color: var(--espresso); }
+  .packages h2 { color: var(--espresso); }
+  .packages h2 em { color: var(--caramel); }
+  .packages .section-tag { color: var(--caramel); }
+  .packages .section-tag::before { background: var(--caramel); }
+  .packages-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: end; margin-bottom: 4rem;
+  }
+  .packages-header p { color: rgba(28,20,16,0.55); font-weight: 300; line-height: 1.8; }
+  .packages-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    background: transparent;
+  }
+  .package-card {
+    background: var(--mist); padding: 3rem 2.5rem; position: relative;
+    border-radius: 16px;
+    border: 1px solid rgba(28,20,16,0.1);
+  }
+  .package-card.featured {
+    background: var(--espresso); color: var(--cream);
+    border-color: rgba(200,148,63,0.35);
+  }
+  .package-badge {
+    display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem; background: var(--gold); color: var(--espresso);
+    margin-bottom: 1.5rem;
+  }
+  .package-name {
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 300;
+    color: var(--espresso); margin-bottom: 0.5rem;
+  }
+  .package-card.featured .package-name { color: var(--cream); }
+  .package-tagline {
+    font-size: 0.8rem; color: rgba(28,20,16,0.45);
+    margin-bottom: 2rem;
+  }
+  .package-card.featured .package-tagline { color: rgba(245,240,232,0.45); }
+  .package-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+  .package-features li {
+    font-size: 0.85rem; color: rgba(28,20,16,0.65); font-weight: 300;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .package-card.featured .package-features li { color: rgba(245,240,232,0.6); }
+  .package-features li::before {
+    content: ''; width: 16px; height: 1px; background: var(--caramel); min-width: 16px;
+  }
+  .package-card.featured .package-features li::before { background: var(--gold); }
+  .btn-package {
+    display: block; width: 100%; text-align: center;
+    padding: 0.9rem;
+    border: 1px solid rgba(28,20,16,0.2);
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--espresso); text-decoration: none; transition: all 0.3s;
+  }
+  .btn-package:hover { background: var(--espresso); color: var(--cream); border-color: var(--espresso); }
+  .package-card.featured .btn-package {
+    background: var(--gold); border-color: var(--gold); color: var(--espresso);
+  }
+  .package-card.featured .btn-package:hover { background: #D4A050; }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    text-align: center;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 50%, rgba(63,38,20,0.5) 0%, transparent 70%),
+      var(--espresso);
+    padding: 8rem 4rem;
+  }
+  .cta-section h2 {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    margin-bottom: 1rem;
+  }
+  .cta-section p {
+    font-size: 1rem; font-weight: 300;
+    color: rgba(245,240,232,0.5); max-width: 500px;
+    margin: 0 auto 3rem; line-height: 1.75;
+  }
+  .cta-actions { display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; }
+  .btn-contact {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.1rem 2rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    min-width: 220px;
+  }
+  .btn-contact-icon {
+    width: 40px; height: 40px; min-width: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .btn-contact-icon svg { width: 20px; height: 20px; }
+  .btn-contact-text { text-align: left; }
+  .btn-contact-label {
+    display: block; font-size: 0.6rem; letter-spacing: 0.18em;
+    text-transform: uppercase; opacity: 0.6; margin-bottom: 0.15rem;
+  }
+  .btn-contact-value {
+    display: block; font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .btn-email {
+    border: 1px solid rgba(200,148,63,0.35);
+    color: var(--cream);
+    background: rgba(200,148,63,0.05);
+  }
+  .btn-email:hover {
+    background: rgba(200,148,63,0.12);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .btn-email .btn-contact-icon {
+    background: rgba(200,148,63,0.15);
+    border: 1px solid rgba(200,148,63,0.3);
+  }
+  .btn-email .btn-contact-icon svg { stroke: var(--gold); }
+  .btn-whatsapp {
+    border: 1px solid rgba(37,211,102,0.3);
+    color: var(--cream);
+    background: rgba(37,211,102,0.05);
+  }
+  .btn-whatsapp:hover {
+    background: rgba(37,211,102,0.1);
+    border-color: rgba(37,211,102,0.6);
+    transform: translateY(-2px);
+  }
+  .btn-whatsapp .btn-contact-icon {
+    background: rgba(37,211,102,0.12);
+    border: 1px solid rgba(37,211,102,0.25);
+  }
+  .btn-whatsapp .btn-contact-icon svg { fill: #25D366; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0D0A08;
+    padding: 4rem;
+    border-top: 1px solid rgba(200,148,63,0.12);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .nav-logo { font-size: 1.8rem; display: block; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.83rem; line-height: 1.7; color: rgba(245,240,232,0.35); font-weight: 300; max-width: 250px; }
+  .footer-col h5 {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.83rem; color: rgba(245,240,232,0.35); text-decoration: none;
+    transition: color 0.3s; font-weight: 300;
+  }
+  .footer-col ul li a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(245,240,232,0.06);
+    padding-top: 2rem;
+    font-size: 0.75rem; color: rgba(245,240,232,0.2);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-content { padding: 8rem 1.5rem 4rem; }
+    .hero-image { min-height: 300px; }
+    .services-header, .packages-header { grid-template-columns: 1fr; gap: 2rem; }
+    .about-full { grid-template-columns: 1fr; }
+    .about-left { min-height: 50vh; }
+    .about-left-stat { flex-direction: row; gap: 2rem; bottom: 2rem; left: 1.5rem; }
+    .about-right { padding: 3rem 1.5rem; }
+    .about-right::before { display: none; }
+    .event-row, .event-row.reverse { grid-template-columns: 1fr; }
+    .event-row-img { min-height: 260px; order: 0 !important; }
+    .event-row-text { order: 1 !important; padding: 2.5rem 1.5rem; }
+    .packages-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .cta-actions { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Origen<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#paquetes">Paquetes</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Cotizar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Café de especialidad · Eventos premium</div>
+    <h1>El café que tu evento <em>merece</em></h1>
+    <p>Llevamos la experiencia de una cafetería de especialidad directamente a tu evento. Baristas profesionales, equipos de primer nivel y granos seleccionados de origen.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Solicitar cotización</a>
+      <a href="#servicios" class="btn-ghost">Ver servicios</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="a1.jpeg" alt="Barista preparando café de especialidad" />
+    <div class="hero-image-overlay"></div>
+  </div>
+  <div class="hero-scroll">Descubrir</div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="services" id="servicios">
+  <div class="services-header">
+    <div>
+      <div class="section-tag">Lo que hacemos</div>
+      <h2>Servicio a medida para cada <em>ocasión</em></h2>
+    </div>
+    <p>Cada evento es único. Diseñamos la experiencia de café perfecta para tu formato, tu marca y tu audiencia. Desde una reunión íntima hasta un festival de miles de personas.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <h3>Carrito de café móvil</h3>
+      <p>Nuestro carrito de diseño personalizado se instala en cualquier espacio. Elegante, compacto y completamente equipado para producir cafés de especialidad de nivel café boutique.</p>
+      <!--<a href="#contacto" class="service-link">Más información <span class="service-link-arrow">→</span></a>-->
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <h3>Barra de café premium</h3>
+      <p>Para eventos que requieren mayor capacidad. Instalamos una barra completa con múltiples puestos de trabajo, equipos La Marzocco y baristas de alta experiencia.</p>
+      <!--<a href="#contacto" class="service-link">Más información <span class="service-link-arrow">→</span></a>-->
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <h3>Degustación & cupping</h3>
+      <p>Una experiencia educativa e interactiva. Un barista experto guía a los asistentes en una cata de cafés de distintos orígenes. Perfecto para activaciones de marca y team buildings.</p>
+      <!--<a href="#contacto" class="service-link">Más información <span class="service-link-arrow">→</span></a>-->
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <h3>Café con branding</h3>
+      <p>Personalizamos la experiencia con la identidad visual de tu marca: tazas, empaques, artes en el café con latte art y cartelería personalizada para activaciones memorables.</p>
+      <!--<a href="#contacto" class="service-link">Más información <span class="service-link-arrow">→</span></a>-->
+    </div>
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <h3>Café frío & preparaciones</h3>
+      <p>Cold brew, iced lattes, café tónico y preparaciones frías de temporada. Amplía la oferta de tu evento con opciones refrescantes sin sacrificar la calidad de especialidad.</p>
+      <!--<a href="#contacto" class="service-link">Más información <span class="service-link-arrow">→</span></a>-->
+    </div>
+    <div class="service-card">
+      <span class="service-num">06</span>
+      <h3>Abastecimiento & granos</h3>
+      <p>¿Tienes tu propio equipo pero necesitas los mejores granos? Proveemos cafés de especialidad, tostados localmente, con fichas técnicas detalladas y soporte de preparación.</p>
+      <!--<a href="#contacto" class="service-link">Más información <span class="service-link-arrow">→</span></a>-->
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="about-full">
+    <div class="about-left">
+      <img src="a2.jpeg" alt="Barista preparando café de especialidad" />
+      <div class="about-left-overlay"></div>
+    </div>
+    <div class="about-right">
+      <div class="section-tag">Nuestra historia</div>
+      <h2>Pasión por el café, <em>dedicación</em> al detalle</h2>
+      <div class="about-body-text">
+        <p>Nacimos de la convicción de que el café en eventos no debería ser una ocurrencia de último minuto. Creemos que una buena taza puede ser el momento más memorable de una reunión.</p>
+        <p>Trabajamos exclusivamente con cafés de especialidad, trazables y de comercio justo, con baristas certificados SCA formados en las mejores tostadurías del mundo.</p>
+      </div>
+      <div class="about-pillars">
+        <div class="pillar">
+          <span class="pillar-icon">⚙️</span>
+          <strong>Equipos de primer nivel</strong>
+          <span>La Marzocco Linea Mini y Mahlkönig EK43</span>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🌿</span>
+          <strong>Granos de especialidad</strong>
+          <span>Colombia, Etiopía y Guatemala, origen certificado</span>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🏆</span>
+          <strong>Baristas certificados</strong>
+          <span>Certificación SCA y formación continua</span>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🚐</span>
+          <strong>Servicio completo</strong>
+          <span>Montaje, operación y desmontaje incluidos</span>
+        </div>
+      </div>
+      <a href="#contacto" class="btn-primary" style="display:inline-block;">Cotiza tu evento</a>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTOS ALTERNADOS -->
+<section class="events" id="eventos">
+  <div class="events-header">
+    <div class="section-tag" style="justify-content:center;">Tipos de evento</div>
+    <h2>Presentes en cada <em>momento</em> especial</h2>
+    <p>Desde congresos internacionales hasta celebraciones íntimas, llevamos nuestra pasión por el café a cada formato.</p>
+  </div>
+  <div class="events-list">
+
+    <!-- Fila 1: imagen izquierda, texto derecha -->
+    <div class="event-row">
+      <div class="event-row-img">
+        <img src="a3.jpeg" alt="Evento corporativo" />
+        <div class="event-row-img-overlay"></div>
+      </div>
+      <div class="event-row-text">
+        <span class="event-row-tag">Empresas</span>
+        <h3>Eventos corporativos</h3>
+        <p>Reuniones de directorio, lanzamientos de producto, team buildings y jornadas de trabajo con café de primer nivel.</p>
+        <a href="#contacto" class="event-row-link">Cotizar este servicio →</a>
+      </div>
+    </div>
+
+    <!-- Fila 2: texto izquierda, imagen derecha -->
+    <div class="event-row reverse">
+      <div class="event-row-img">
+        <img src="a4.jpeg" alt="Congreso y conferencia" />
+        <div class="event-row-img-overlay"></div>
+      </div>
+      <div class="event-row-text">
+        <span class="event-row-tag">Congresos</span>
+        <h3>Congresos & conferencias</h3>
+        <p>Servicio de alta capacidad para eventos académicos, ferias y convenciones. Múltiples baristas y puntos de atención.</p>
+        <a href="#contacto" class="event-row-link">Cotizar este servicio →</a>
+      </div>
+    </div>
+
+    <!-- Fila 3: imagen izquierda, texto derecha -->
+    <div class="event-row">
+      <div class="event-row-img">
+        <img src="a5.jpeg" alt="Matrimonio y bodas" />
+        <div class="event-row-img-overlay"></div>
+      </div>
+      <div class="event-row-text">
+        <span class="event-row-tag">Matrimonios</span>
+        <h3>Bodas & ceremonias</h3>
+        <p>Una estación de café elegante que se convierte en el punto de encuentro de tus invitados. Personalizable al estilo de tu celebración.</p>
+        <a href="#contacto" class="event-row-link">Cotizar este servicio →</a>
+      </div>
+    </div>
+
+    <!-- Fila 4: texto izquierda, imagen derecha -->
+    <div class="event-row reverse">
+      <div class="event-row-img">
+        <img src="a6.jpeg" alt="Cumpleaños y fiestas" />
+        <div class="event-row-img-overlay"></div>
+      </div>
+      <div class="event-row-text">
+        <span class="event-row-tag">Cumpleaños</span>
+        <h3>Cumpleaños & fiestas</h3>
+        <p>Dale un toque especial a tu celebración. Café de especialidad para los adultos, chocolate caliente y bebidas frías para todos.</p>
+        <a href="#contacto" class="event-row-link">Cotizar este servicio →</a>
+      </div>
+    </div>
+
+    <!-- Fila 5: imagen izquierda, texto derecha -->
+    <div class="event-row">
+      <div class="event-row-img">
+        <img src="a7.jpeg" alt="Celebraciones y eventos sociales" />
+        <div class="event-row-img-overlay"></div>
+      </div>
+      <div class="event-row-text">
+        <span class="event-row-tag">Celebraciones</span>
+        <h3>Eventos & celebraciones</h3>
+        <p>Graduaciones, aniversarios, cócteles y encuentros sociales. Cada ocasión merece el mejor café.</p>
+        <a href="#contacto" class="event-row-link">Cotizar este servicio →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="process">
+  <div style="text-align:center; max-width: 600px; margin: 0 auto;">
+    <div class="section-tag" style="justify-content:center;">Cómo trabajamos</div>
+    <h2>Simple, transparente y <em>sin sorpresas</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">I</div>
+      <h4>Consulta inicial</h4>
+      <p>Nos cuentas sobre tu evento: fecha, cantidad de personas, tipo y expectativas. Sin compromiso.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">II</div>
+      <h4>Propuesta a medida</h4>
+      <p>Diseñamos un servicio personalizado con equipos, menú de bebidas y logística detallada.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">III</div>
+      <h4>Coordinación</h4>
+      <p>Gestionamos todo: transporte, instalación, permisos y coordinación con otros proveedores.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">IV</div>
+      <h4>El día del evento</h4>
+      <p>Llegamos antes, montamos sin estrés y ofrecemos el mejor café de principio a fin.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAQUETES -->
+<section class="packages" id="paquetes">
+  <div class="packages-header">
+    <div>
+      <div class="section-tag">Paquetes</div>
+      <h2>Encuentra el servicio <em>ideal</em> para ti</h2>
+    </div>
+    <p>Precios referenciales. Cada cotización se personaliza según la duración del evento, número de asistentes y requerimientos específicos.</p>
+  </div>
+  <div class="packages-grid">
+    <div class="package-card">
+      <div class="package-name">Esencial</div>
+      <div class="package-tagline">Hasta 100 personas · 3 horas</div>
+      <ul class="package-features">
+        <li>1 barista certificado</li>
+        <li>Carrito de café compacto</li>
+        <li>Espresso, americano, cortado</li>
+        <li>Leche vegetal disponible</li>
+        <li>Tazas & utensilios incluidos</li>
+        <li>Montaje y desmontaje</li>
+      </ul>
+      <a href="#contacto" class="btn-package">Solicitar cotización</a>
+    </div>
+    <div class="package-card featured">
+      <div class="package-badge">Más popular</div>
+      <div class="package-name">Premium</div>
+      <div class="package-tagline">Hasta 250 personas · 5 horas</div>
+      <ul class="package-features">
+        <li>2 baristas certificados</li>
+        <li>Barra de café completa</li>
+        <li>Menú extendido (8 bebidas)</li>
+        <li>Cold brew & opciones frías</li>
+        <li>Branding básico incluido</li>
+        <li>Degustación de orígenes</li>
+        <li>Coordinador de servicio</li>
+      </ul>
+      <a href="#contacto" class="btn-package">Solicitar cotización</a>
+    </div>
+    <div class="package-card">
+      <div class="package-name">Élite</div>
+      <div class="package-tagline">+250 personas · Jornada completa</div>
+      <ul class="package-features">
+        <li>Equipo de baristas dedicado</li>
+        <li>Múltiples puntos de servicio</li>
+        <li>Menú completamente personalizado</li>
+        <li>Branding completo y latte art</li>
+        <li>Cupping interactivo</li>
+        <li>Atención VIP diferenciada</li>
+        <li>Coordinador exclusivo</li>
+      </ul>
+      <a href="#contacto" class="btn-package">Solicitar cotización</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contacto">
+  <div class="section-tag" style="justify-content:center; margin-bottom: 1.5rem;">Hablemos</div>
+  <h2>¿Listo para elevar<br><em>tu evento?</em></h2>
+  <p>Cuéntanos sobre tu próximo evento y te enviamos una propuesta personalizada en menos de 24 horas.</p>
+  <div class="cta-actions">
+    <a href="mailto:hola@origencafe.cl" class="btn-contact btn-email">
+      <div class="btn-contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M2 7l10 7 10-7"/>
+        </svg>
+      </div>
+      <div class="btn-contact-text">
+        <span class="btn-contact-label">Correo electrónico</span>
+        <span class="btn-contact-value">cesar@origencafe.cl</span>
+      </div>
+    </a>
+    <a href="https://wa.me/56912345678" class="btn-contact btn-whatsapp" target="_blank">
+      <div class="btn-contact-icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/>
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.374A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.95 7.95 0 01-4.076-1.124l-.292-.174-3.035.838.872-3.11-.19-.31A7.948 7.948 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="#25D366"/>
+        </svg>
+      </div>
+      <div class="btn-contact-text">
+        <span class="btn-contact-label">WhatsApp</span>
+        <span class="btn-contact-value">+56 9 1234 5678</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Origen<span>.</span></a>
+      <p>Cafetería de especialidad móvil para eventos corporativos, bodas y activaciones de marca. Santiago, Chile.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="#servicios">Carrito móvil</a></li>
+        <li><a href="#servicios">Barra premium</a></li>
+        <li><a href="#servicios">Degustación</a></li>
+        <li><a href="#servicios">Branding café</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#paquetes">Paquetes</a></li>
+        <!--<li><a href="#">Blog</a></li> -->
+        <!--<li><a href="#">Galería</a></li> -->
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a >cesar@origencafe.cl</a></li>
+        <li><a >+56 9 5669 2105</a></li>
+        <li><a >Puerto Varas, Chile</a></li>
+        <li><a >Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Origen Café</span>
+    <span>Hecho con ☕ en Chile</span>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+</body>
+</html>
